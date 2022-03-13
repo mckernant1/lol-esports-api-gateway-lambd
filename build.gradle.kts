@@ -1,8 +1,13 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     kotlin("jvm") version "1.6.10"
+    id("com.github.johnrengelman.shadow") version "5.1.0"
     application
+}
+
+application {
+    mainClassName = "com.github.mckernant1.lol.esports.api.lambda.RunnerKt"
 }
 
 group = "com.github.mckernant1.lol.esports.api"
@@ -10,13 +15,14 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    jcenter()
     maven {
         url = uri("https://mvn.mckernant1.com/release")
     }
 }
 
 dependencies {
+    implementation(kotlin("reflect"))
+
     implementation("com.github.mckernant1.lol:esports-api:0.0.6")
     implementation("com.google.code.gson:gson:2.9.0")
 
@@ -27,10 +33,16 @@ dependencies {
 
     testImplementation(kotlin("test"))
 
+    implementation(platform("com.amazonaws:aws-java-sdk-bom:1.12.177"))
+    implementation("com.amazonaws:aws-java-sdk-dynamodb")
+
     implementation(platform("software.amazon.awssdk:bom:2.17.148"))
 
     implementation("software.amazon.awssdk:dynamodb-enhanced")
+    implementation("software.amazon.awssdk:dynamodb")
     implementation("software.amazon.awssdk:lambda")
+
+    implementation("com.amazonaws:aws-lambda-java-core:1.2.1")
 
 }
 
@@ -38,10 +50,21 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+tasks {
+    compileKotlin {
+        kotlinOptions.jvmTarget = "11"
+    }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "11"
+    }
 }
 
 application {
     mainClass.set("MainKt")
+}
+
+tasks.withType<ShadowJar>() {
+    manifest {
+        attributes["Main-Class"] = "com.github.mckernant1.lol.esports.api.lambda.RunnerKt"
+    }
 }

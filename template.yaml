@@ -1,0 +1,167 @@
+# This is the SAM template that represents the architecture of your serverless application
+# https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-basics.html
+
+# The AWSTemplateFormatVersion identifies the capabilities of the template
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/format-version-structure.html
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  lol-api-gateway-lambda
+
+# Transform section specifies one or more macros that AWS CloudFormation uses to process your template
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/transform-section-structure.html
+Transform:
+  - AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 20
+    MemorySize: 512
+
+# Resources declares the AWS resources that you want to include in the stack
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
+Resources:
+  LolApiGateway:
+    Type: AWS::Serverless::Api
+    Auth:
+      ApiKeyRequired: true
+    Properties:
+      StageName: Prod
+
+  getTournamentsForLeague:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetTournamentsForLeague::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Description: Get
+      Policies:
+        - AmazonDynamoDBReadOnlyAccess
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /tournaments/{leagueId}
+            Method: GET
+            RestApiId: !Ref LolApiGateway
+            Auth:
+              ApiKeyRequired: true
+
+  getGamesForTournament:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetMatchesForTournament::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Description: Get
+      Policies:
+        - AmazonDynamoDBReadOnlyAccess
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /matches/{tournamentId}
+            Method: GET
+            RestApiId: !Ref LolApiGateway
+            Auth:
+              ApiKeyRequired: true
+
+  getAllLeagues:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetAllLeagues::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Description: Get
+      Policies:
+        - AmazonDynamoDBReadOnlyAccess
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /leagues
+            Method: GET
+            RestApiId: !Ref LolApiGateway
+            Auth:
+              ApiKeyRequired: true
+
+  getLeague:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetLeague::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Description: Get
+      Policies:
+        - AmazonDynamoDBReadOnlyAccess
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /leagues/{leagueId}
+            Method: GET
+            RestApiId: !Ref LolApiGateway
+            Auth:
+              ApiKeyRequired: true
+
+  getPlayersOnTeam:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetPlayersOnTeam::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Description: Get
+      Policies:
+        - AmazonDynamoDBReadOnlyAccess
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /players/{teamId}
+            Method: GET
+            RestApiId: !Ref LolApiGateway
+            Auth:
+              ApiKeyRequired: true
+  getAllTeams:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetAllTeams::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Description: Get
+      Policies:
+        - AmazonDynamoDBReadOnlyAccess
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /teams
+            Method: GET
+            RestApiId: !Ref LolApiGateway
+            Auth:
+              ApiKeyRequired: true
+
+  getTeam:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetTeam::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Description: Get
+      Policies:
+        - AmazonDynamoDBReadOnlyAccess
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /teams/{teamId}
+            Method: GET
+            RestApiId: !Ref LolApiGateway
+            Auth:
+              ApiKeyRequired: true

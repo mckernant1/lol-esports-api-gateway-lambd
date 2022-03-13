@@ -1,5 +1,7 @@
 package com.github.mckernant1.lol.esports.api.lambda
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient
+
 
 internal const val MATCHES_TABLE_NAME = "Matches"
 
@@ -12,7 +14,8 @@ internal const val TEAMS_TABLE_NAME = "Teams"
 
 internal const val TOURNAMENTS_TABLE_NAME = "Tournaments"
 
-//internal val ddb = DynamoDb.builder().build()
+internal val ddb = AmazonDynamoDBClient.builder()
+    .build()
 
 
 
