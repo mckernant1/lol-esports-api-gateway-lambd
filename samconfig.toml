@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "lol-esports-api-gateway-lambda"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1kasd4sjnyhb3"
+s3_prefix = "lol-esports-api-gateway-lambda"
+region = "us-west-2"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = true
+image_repositories = []
