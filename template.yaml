@@ -14,7 +14,7 @@ Transform:
 
 Globals:
   Function:
-    Timeout: 20
+    Timeout: 60
     MemorySize: 512
 
 # Resources declares the AWS resources that you want to include in the stack
