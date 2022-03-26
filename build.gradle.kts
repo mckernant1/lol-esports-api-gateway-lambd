@@ -2,12 +2,12 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     kotlin("jvm") version "1.6.10"
-    id("com.github.johnrengelman.shadow") version "5.1.0"
+    id("com.github.johnrengelman.shadow") version "7.1.0"
     application
 }
 
 application {
-    mainClassName = "com.github.mckernant1.lol.esports.api.lambda.RunnerKt"
+    mainClass.set("com.github.mckernant1.lol.esports.api.lambda.RunnerKt")
 }
 
 group = "com.github.mckernant1.lol.esports.api"
@@ -23,7 +23,7 @@ repositories {
 dependencies {
     implementation(kotlin("reflect"))
 
-    implementation("com.github.mckernant1.lol:esports-api:0.0.6")
+    implementation("com.github.mckernant1.lol:esports-api:0.0.8")
     implementation("com.google.code.gson:gson:2.9.0")
 
     implementation("org.apache.logging.log4j:log4j-api:2.17.1")

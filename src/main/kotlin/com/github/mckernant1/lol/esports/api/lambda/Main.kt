@@ -1,7 +1,9 @@
-fun main(args: Array<String>) {
-    println("Hello World!")
+package com.github.mckernant1.lol.esports.api.lambda
 
-    // Try adding program arguments via Run/Debug configuration.
-    // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
-    println("Program arguments: ${args.joinToString()}")
+import org.openapitools.client.api.DefaultApi
+
+fun main(args: Array<String>) {
+    val api = DefaultApi()
+
+    val res = api.getLeagueByCodeWithHttpInfo("asdf")
 }
