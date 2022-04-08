@@ -24,6 +24,7 @@ dependencies {
     implementation(kotlin("reflect"))
 
     implementation("com.github.mckernant1.lol:esports-api:0.0.8")
+    implementation("com.github.mckernant1:kotlin-utils:0.0.12")
     implementation("com.google.code.gson:gson:2.9.0")
 
     implementation("org.apache.logging.log4j:log4j-api:2.17.1")
