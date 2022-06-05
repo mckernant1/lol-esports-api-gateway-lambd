@@ -26,6 +26,10 @@ Resources:
       ApiKeyRequired: true
     Properties:
       StageName: Prod
+      MethodSettings:
+        LoggingLevel: INFO
+        MetricsEnabled: true
+        DataTraceEnabled: true
 
   getTournamentsForLeague:
     Type: AWS::Serverless::Function
