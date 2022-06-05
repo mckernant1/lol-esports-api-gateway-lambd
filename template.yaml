@@ -27,7 +27,8 @@ Resources:
     Properties:
       StageName: Prod
       MethodSettings:
-        - ResourcePath: /
+        - ResourcePath: /*
+          HttpMethod: *
           LoggingLevel: INFO
           MetricsEnabled: true
           DataTraceEnabled: true
