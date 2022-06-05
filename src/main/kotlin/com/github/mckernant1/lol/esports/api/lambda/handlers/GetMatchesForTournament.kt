@@ -30,7 +30,7 @@ class GetMatchesForTournament : AbstractPathVariableRequestHandler() {
             return ErrorResponse(
                 "No matches were found for tourney $paramValue",
                 "NoMatchesForTournament",
-                400
+                404
             )
         }
 

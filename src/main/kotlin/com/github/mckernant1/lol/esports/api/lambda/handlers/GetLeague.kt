@@ -23,7 +23,7 @@ class GetLeague : AbstractPathVariableRequestHandler() {
             return ErrorResponse(
                 "leagueId $paramValue does not exist",
                 "NoSuchLeagueException",
-                400
+                404
             )
         }
 

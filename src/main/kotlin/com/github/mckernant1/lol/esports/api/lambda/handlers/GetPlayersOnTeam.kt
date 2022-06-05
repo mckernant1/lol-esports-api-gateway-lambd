@@ -30,7 +30,7 @@ class GetPlayersOnTeam : AbstractPathVariableRequestHandler() {
             return ErrorResponse(
                 "No players were found for team $paramValue",
                 "NoPlayersForTeam",
-                400
+                404
             )
         }
 

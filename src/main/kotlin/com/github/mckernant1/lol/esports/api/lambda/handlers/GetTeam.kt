@@ -23,8 +23,8 @@ class GetTeam : AbstractPathVariableRequestHandler() {
             logger.warn("Sending error response")
             return ErrorResponse(
                 "teamId $paramValue does not exist",
-                "NoSuchLeagueException",
-                400
+                "NoSuchTeamException",
+                404
             )
         }
 
