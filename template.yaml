@@ -53,6 +53,26 @@ Resources:
             Auth:
               ApiKeyRequired: true
 
+  getTournament:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetTournament::handleRequest
+      Runtime: java11
+      Architectures:
+        - x86_64
+      Description: Get
+      Policies:
+        - AmazonDynamoDBReadOnlyAccess
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /tournament/{tournamentId}
+            Method: GET
+            RestApiId: !Ref LolApiGateway
+            Auth:
+              ApiKeyRequired: true
+
   getOngoingTournaments:
     Type: AWS::Serverless::Function
     Properties:

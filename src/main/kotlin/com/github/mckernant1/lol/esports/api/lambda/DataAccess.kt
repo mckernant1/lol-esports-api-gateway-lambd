@@ -13,6 +13,7 @@ internal const val PLAYERS_TABLE_TEAM_INDEX = "teamId-id-index"
 internal const val TEAMS_TABLE_NAME = "Teams"
 
 internal const val TOURNAMENTS_TABLE_NAME = "Tournaments"
+internal const val TOURNAMENT_INDEX = "tournamentId-index"
 
 internal val ddb = AmazonDynamoDBClient.builder()
     .build()

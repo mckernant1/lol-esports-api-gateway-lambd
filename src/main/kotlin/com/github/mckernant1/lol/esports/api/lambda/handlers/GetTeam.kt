@@ -19,14 +19,12 @@ class GetTeam : AbstractPathVariableRequestHandler() {
             mapOf(
                 "teamId" to AttributeValue(paramValue)
             )
-        ).item ?: run {
-            logger.warn("Sending error response")
-            return ErrorResponse(
-                "teamId $paramValue does not exist",
-                "NoSuchTeamException",
-                404
-            )
-        }
+        ).item ?: return ErrorResponse(
+            "teamId $paramValue does not exist",
+            "NoSuchTeamException",
+            404
+        )
+
 
         val mappedItem = mapToObject(ItemUtils.toItem(item).asMap(), Team::class)
 
