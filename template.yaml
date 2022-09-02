@@ -16,6 +16,8 @@ Globals:
   Function:
     Timeout: 60
     MemorySize: 512
+    ProvisionedConcurrencyConfig:
+      ProvisionedConcurrentExecutions: 1
 
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
@@ -39,7 +41,7 @@ Resources:
       Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetTournamentsForLeague::handleRequest
       Runtime: java11
       Architectures:
-        - x86_64
+        - arm64
       Description: Get
       Policies:
         - AmazonDynamoDBReadOnlyAccess
@@ -59,7 +61,7 @@ Resources:
       Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetTournament::handleRequest
       Runtime: java11
       Architectures:
-        - x86_64
+        - arm64
       Description: Get
       Policies:
         - AmazonDynamoDBReadOnlyAccess
@@ -79,7 +81,7 @@ Resources:
       Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetOngoingTournaments::handleRequest
       Runtime: java11
       Architectures:
-        - x86_64
+        - arm64
       Description: Get
       Policies:
         - AmazonDynamoDBReadOnlyAccess
@@ -99,7 +101,7 @@ Resources:
       Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetMatchesForTournament::handleRequest
       Runtime: java11
       Architectures:
-        - x86_64
+        - arm64
       Description: Get
       Policies:
         - AmazonDynamoDBReadOnlyAccess
@@ -119,7 +121,7 @@ Resources:
       Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetAllLeagues::handleRequest
       Runtime: java11
       Architectures:
-        - x86_64
+        - arm64
       Description: Get
       Policies:
         - AmazonDynamoDBReadOnlyAccess
@@ -139,7 +141,7 @@ Resources:
       Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetLeague::handleRequest
       Runtime: java11
       Architectures:
-        - x86_64
+        - arm64
       Description: Get
       Policies:
         - AmazonDynamoDBReadOnlyAccess
@@ -159,7 +161,7 @@ Resources:
       Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetPlayersOnTeam::handleRequest
       Runtime: java11
       Architectures:
-        - x86_64
+        - arm64
       Description: Get
       Policies:
         - AmazonDynamoDBReadOnlyAccess
@@ -178,7 +180,7 @@ Resources:
       Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetAllTeams::handleRequest
       Runtime: java11
       Architectures:
-        - x86_64
+        - arm64
       Description: Get
       Policies:
         - AmazonDynamoDBReadOnlyAccess
@@ -198,7 +200,7 @@ Resources:
       Handler: com.github.mckernant1.lol.esports.api.lambda.handlers.GetTeam::handleRequest
       Runtime: java11
       Architectures:
-        - x86_64
+        - arm64
       Description: Get
       Policies:
         - AmazonDynamoDBReadOnlyAccess
